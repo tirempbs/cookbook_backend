@@ -29,6 +29,13 @@ class Api::V1::RecipesController < ApplicationController
         render json: @recipes, status: :ok
     end
 
+    def search
+        q = params[:q]
+        response = RestClient.get("https://api.yummly.com/v1/api/recipes?q=#{q}&_app_id=adebbd82&_app_key=8f8063f5a2135156a18644437bb04e63")
+        @results = JSON.parse(response)["matches"]
+        render json: @results
+    end
+
     private
 
     def find_recipe

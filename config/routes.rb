@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
       post '/create', to: 'users#create'
+      post '/search/:q', to: 'recipes#search'
     end
   end
 end
